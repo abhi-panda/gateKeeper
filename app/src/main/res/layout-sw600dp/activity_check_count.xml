@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="200px"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <!-- Include other widget or layout tags here. These are considered
+            "child views" or "children" of the linear layout -->
+
+
+    <TextView
+        android:id="@+id/guestNameTextView"
+        android:textSize="30sp"
+        android:text="Guest Statistics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10px"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10px"
+        android:paddingTop="5px"
+        android:paddingBottom="5px"
+        android:background="#A9A9A9"/>
+
+    <LinearLayout
+        android:padding="10px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:text="Total Adult Guests Registered"/>
+
+        <TextView
+            android:hint="0"
+            android:id="@+id/totalAdultGuestsTextViewCount"
+            android:layout_weight="1"
+            android:textSize="17sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="10px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:text="Total Child Guests Registered"/>
+
+        <TextView
+            android:hint="0"
+            android:id="@+id/totalChildGuestsTextViewCount"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10px"
+        android:paddingTop="5px"
+        android:paddingBottom="5px"
+        android:background="#A9A9A9"/>
+
+
+
+    <LinearLayout
+        android:padding="10px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:text="Total Adult Guests Arrived"/>
+
+        <TextView
+            android:hint="0"
+            android:id="@+id/totalAdultGuestsArrivedTextViewCount"
+            android:layout_weight="1"
+            android:textSize="17sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="10px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:text="Total Child Guests Arrived"/>
+
+        <TextView
+            android:hint="0"
+            android:id="@+id/totalChildGuestsArrivedTextViewCount"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10px"
+        android:paddingTop="5px"
+        android:paddingBottom="5px"
+        android:background="#A9A9A9"/>
+
+
+    <Button
+        android:id="@+id/btnHomeCount"
+        android:layout_width="400px"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100px"
+        android:layout_gravity="center_horizontal"
+        android:text="Home"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"/>
+
+
+
+
+</LinearLayout>

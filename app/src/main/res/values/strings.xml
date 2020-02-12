@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">gateKeeper</string>
+    <string name="logo_label">gateKeeper Logo</string>
+    <string name="btn_scan_code">Scan Code</string>
+    <string name="btn_check_count">Check Count</string>
+    <string name="btn_verify_conn">Verify Connection</string>
+    <string name="ip_menu">IP Settings</string>
+    <string name="ip_menu_hint">IP Address</string>
+    <string name="save_btn_desc">Save</string>
+    <string name="ip_menu_note">NOTE : Please check and press Save to return to App\'s Home</string>
+</resources>
