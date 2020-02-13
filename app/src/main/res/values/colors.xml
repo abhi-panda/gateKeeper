@@ -3,8 +3,8 @@
     <color name="colorPrimary">#D88870D3</color>
     <color name="colorPrimaryDark">#4D407A</color>
     <color name="colorAccent">#00F5F5</color>
-    <color name="btn_scan_code_color">#F54E00</color>
-    <color name="btn_check_count_color">#9C27B0</color>
-    <color name="btn_verify_conn_color">#4CAF50</color>
+    <color name="btn_scan_code_color">#FD7F20</color>
+    <color name="btn_check_count_color">#041F60</color>
+    <color name="btn_verify_conn_color">#353643</color>
     <color name="btn_save_background">#FFFFFF</color>
 </resources>
