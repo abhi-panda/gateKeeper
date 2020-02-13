@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class SplashActivity : AppCompatActivity() {
     private var mDelayHandler: Handler? = null
-    private val SPLASH_DELAY: Long = 4000
+    private val SPLASH_DELAY: Long = 5000
 
     internal val mRunnable: Runnable = Runnable {
         if (!isFinishing) {

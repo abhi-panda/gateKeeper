@@ -59,7 +59,7 @@ public class GuestArrivalActivity extends AppCompatActivity{
             }
         });
 
-        //Getting refernece to XML objects
+        //Getting reference to XML objects
         guestNameTextView = findViewById(R.id.guestNameTextView);
         totalAdultGuestsTextView = findViewById(R.id.totalAdultGuestsTextView);
         totalChildGuestsTextView =findViewById(R.id.totalChildGuestsTextView);
@@ -109,7 +109,7 @@ public class GuestArrivalActivity extends AppCompatActivity{
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(),"Something went wrong. Please try again.",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
                     }
                 }
         );
@@ -156,7 +156,7 @@ public class GuestArrivalActivity extends AppCompatActivity{
         adultGuestsArrivedSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(),"Adult "+i,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"Adult "+i,Toast.LENGTH_SHORT).show();
                 newGuest.setAdultsArrived(guest.getAdultsArrived()+i);
             }
 
@@ -236,7 +236,7 @@ public class GuestArrivalActivity extends AppCompatActivity{
                     public void onErrorResponse(VolleyError error) {
                         Log.e("Update Response",error.toString());
 
-                        Toast.makeText(getApplicationContext(),"Something went wrong. Please try again.",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
                     }
                 }
 

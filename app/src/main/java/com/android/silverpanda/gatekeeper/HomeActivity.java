@@ -83,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
     private  void getCount(){
         sharedPref = getSharedPreferences("A", Context.MODE_PRIVATE);
         String ip_address=sharedPref.getString("IP",null);
-        final String parsedText="http://"+ip_address+":3000/transcend/guestCount";
+        final String parsedText="http://"+ip_address+":3000/transcend/guestCount/totals";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, parsedText,
                 new Response.Listener<String>() {
                     @Override
@@ -128,7 +128,7 @@ public class HomeActivity extends AppCompatActivity {
     private  void verifyConn(){
         sharedPref = getSharedPreferences("A", Context.MODE_PRIVATE);
         String ip_address=sharedPref.getString("IP",null);
-        final String parsedText="http://"+ip_address+":3000/transcend/verify";
+        final String parsedText="http://"+ip_address+":3000/transcend/connection/verify";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, parsedText,
                 new Response.Listener<String>() {
                     @Override
@@ -154,10 +154,10 @@ public class HomeActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject(response);
             String connection  = jsonObject.getString("connection");
 
-            if(connection == "successful"){
-                Toast.makeText(HomeActivity.this,"Connection Successfully Verified!",Toast.LENGTH_SHORT).show();
+            if(connection.equals("successful")){
+                Toast.makeText(HomeActivity.this,"Connection Successfully Verified! ",Toast.LENGTH_SHORT).show();
             }else{
-                Toast.makeText(HomeActivity.this,"Could not verify Connection",Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this,"Could not verify Connection "+connection,Toast.LENGTH_SHORT).show();
             }
 
         } catch (Exception e) {

@@ -35,8 +35,10 @@ public class IPMenuActivity  extends AppCompatActivity {
                 String value= ip_address.getText().toString();
                 editor.putString("IP",value);
                 editor.commit();
+                Toast.makeText(IPMenuActivity.this,"IP Updated to : "+value,Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(IPMenuActivity.this,HomeActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
