@@ -7,4 +7,5 @@
     <color name="btn_check_count_color">#041F60</color>
     <color name="btn_verify_conn_color">#353643</color>
     <color name="btn_save_background">#FFFFFF</color>
+    <color name="circular_btn_background">#193369</color>
 </resources>

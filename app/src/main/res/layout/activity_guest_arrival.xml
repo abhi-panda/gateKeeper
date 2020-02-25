@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:paddingTop="200px"
+    android:paddingTop="120px"
     android:orientation="vertical"
     android:gravity="center_horizontal">
 
@@ -14,7 +14,8 @@
 
     <TextView
         android:id="@+id/guestNameTextView"
-        android:textSize="30sp"
+        android:textSize="60sp"
+        android:gravity="center"
         android:hint="Guest Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,14 +39,15 @@
             android:layout_weight="2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:text="Total Adult Guest"/>
+            android:textSize="42sp"
+            android:text="Total Adult Guest Registered"/>
 
         <TextView
             android:hint="0"
             android:id="@+id/totalAdultGuestsTextView"
             android:layout_weight="1"
-            android:textSize="17sp"
+            android:textSize="42sp"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -61,16 +63,17 @@
             android:layout_weight="2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:text="Total Child Guest"/>
+            android:textSize="42sp"
+            android:text="Total Child Guest Registered"/>
 
         <TextView
             android:hint="0"
             android:id="@+id/totalChildGuestsTextView"
             android:layout_weight="1"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="17sp"/>
+            android:textSize="42sp"/>
 
     </LinearLayout>
     <TextView
@@ -92,14 +95,15 @@
             android:layout_weight="2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
+            android:textSize="42sp"
             android:text="Total Adult Guest Arrived"/>
 
         <TextView
             android:hint="0"
             android:id="@+id/totalAdultGuestsArrivedTextView"
             android:layout_weight="1"
-            android:textSize="17sp"
+            android:gravity="center"
+            android:textSize="42sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -115,16 +119,17 @@
             android:layout_weight="2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
+            android:textSize="42sp"
             android:text="Total Child Guest Arrived"/>
 
         <TextView
             android:hint="0"
             android:id="@+id/totalChildGuestsArrivedTextView"
             android:layout_weight="1"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="17sp"/>
+            android:textSize="42sp"/>
 
     </LinearLayout>
     <TextView
@@ -140,18 +145,25 @@
         android:layout_marginTop="50px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Adult Guest Arrived Now"
-        android:textSize="17sp"/>
+        android:text="Adults Entering Now"
+        android:textSize="35sp"/>
 
-
-
-    <Spinner
-        android:layout_marginTop="10dp"
-        android:id="@+id/adultGuestsArrivedSpinner"
-        android:scrollbarSize="17sp"
-        android:layout_width="300px"
+    <RadioGroup
+        android:id="@+id/radiogroupAdultArrived"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:paddingStart="180dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal" />
+
+    <!--    <Spinner-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:id="@+id/adultGuestsArrivedSpinner"-->
+    <!--        android:scrollbarSize="17sp"-->
+    <!--        android:layout_width="300px"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        />-->
 
 
 
@@ -160,39 +172,54 @@
         android:layout_marginTop="50px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Child Guest Arrived Now"
-        android:textSize="17sp"/>
+        android:text="Children Entering Now"
+        android:textSize="35sp"/>
 
-    <Spinner
-        android:layout_marginTop="10dp"
-        android:scrollbarSize="17sp"
-        android:id="@+id/childGuestsArrivedSpinner"
-        android:layout_width="300px"
-        android:layout_height="wrap_content"/>
-
-
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="400px"
+    <RadioGroup
+        android:id="@+id/radiogroupChildArrived"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100px"
-        android:layout_gravity="center_horizontal"
-        android:text="Submit"
-        android:background="@color/colorPrimary"
-        android:textColor="#fff"
-        android:onClick="submitForm"/>
+        android:paddingStart="180dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal" />
+    <!--    <Spinner-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:scrollbarSize="17sp"-->
+    <!--        android:id="@+id/childGuestsArrivedSpinner"-->
+    <!--        android:layout_width="300px"-->
+    <!--        android:layout_height="wrap_content"/>-->
 
-    <Button
-        android:id="@+id/btnHome"
-        android:layout_width="400px"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100px"
-        android:layout_gravity="center_horizontal"
-        android:text="Home"
-        android:background="@color/colorPrimary"
-        android:textColor="#fff"/>
+        android:orientation="horizontal"
+        android:padding="10px">
 
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/circular_button"
+            android:onClick="submitForm"
+            android:text="Submit"
+            android:textColor="#fff"
+            android:textSize="30dp" />
 
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="170dp"
+            android:background="@drawable/circular_button"
+            android:text="Home"
+            android:textColor="#fff"
+            android:textSize="30dp" />
+    </LinearLayout>
 
 
 </LinearLayout>

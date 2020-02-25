@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Request;
@@ -26,15 +26,15 @@ import org.json.JSONObject;
 
 public class GuestArrivalActivity extends AppCompatActivity{
 
-    //XML Elements
     TextView guestNameTextView;
     TextView totalAdultGuestsTextView;
     TextView totalChildGuestsTextView;
     TextView totalAdultGuestsArrivedTextView;
     TextView totalChildGuestsArrivedTextView;
+    RadioGroup adultsArrivedNowRadioGroup;
+    RadioGroup KidsArrivedNowRadioGroup;
 
-    Spinner adultGuestsArrivedSpinner;
-    Spinner childGuestsArrivedSpinner;
+    int check = 0;
 
     SharedPreferences sharedPref;
 
@@ -49,7 +49,8 @@ public class GuestArrivalActivity extends AppCompatActivity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_arrival);
-
+        adultsArrivedNowRadioGroup = findViewById(R.id.radiogroupAdultArrived);
+        KidsArrivedNowRadioGroup = findViewById(R.id.radiogroupChildArrived);
         Button home_btn = findViewById(R.id.btnHome);
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,8 +68,6 @@ public class GuestArrivalActivity extends AppCompatActivity{
         totalAdultGuestsArrivedTextView = findViewById(R.id.totalAdultGuestsArrivedTextView);
         totalChildGuestsArrivedTextView = findViewById(R.id.totalChildGuestsArrivedTextView);
 
-        adultGuestsArrivedSpinner = findViewById(R.id.adultGuestsArrivedSpinner);
-        childGuestsArrivedSpinner = findViewById(R.id.childGuestsArrivedSpinner);
 
         // To get BarcodeId from Intent
         Bundle extras = getIntent().getExtras();
@@ -116,24 +115,60 @@ public class GuestArrivalActivity extends AppCompatActivity{
 
         // Add the request to the RequestQueue.
         queue.add(jsonObjectRequest);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
-    // Generate remaining Guest values for spinner dropdown
-    public String[] spinnerValueGenerator(int remainingPeople){
-        if(remainingPeople == 0){
-            String strArray[] = new String[1];
-            strArray[0]="0";
-            return  strArray;
-        }
-        String strArray[] = new String[remainingPeople+1];
 
-        for(int i=0;i<=remainingPeople;i++){
-            strArray[i]=String.valueOf(i);
+
+    public void addRadioButtons(int adultsArrivedNumber,int childsArrivedNumber) {
+        adultsArrivedNowRadioGroup.setOrientation(LinearLayout.HORIZONTAL);
+        RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(800,80);
+        params.gravity= Gravity.CENTER;
+        adultsArrivedNowRadioGroup.setLayoutParams(params);
+
+        for (int i = 1; i <= adultsArrivedNumber; i++) {
+            RadioButton rdbtn = new RadioButton(this);
+            rdbtn.setId(View.generateViewId());
+            rdbtn.setText(String.valueOf(i));
+            rdbtn.setPadding(10,0,30,0);
+            rdbtn.setTextAppearance(R.style.TextAppearance_AppCompat_Display1);
+            rdbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int selectedId = adultsArrivedNowRadioGroup.getCheckedRadioButtonId();
+
+                    // find the radio button by returned id
+                    RadioButton radioButton = findViewById(selectedId);
+                    newGuest.setAdultsArrived(guest.getAdultsArrived()+ Integer.parseInt((String)(radioButton.getText())));
+
+                }
+            });
+            adultsArrivedNowRadioGroup.addView(rdbtn);
         }
-        return strArray;
+        KidsArrivedNowRadioGroup.setOrientation(LinearLayout.HORIZONTAL);
+        RadioGroup.LayoutParams params1 = new RadioGroup.LayoutParams(800,80);
+        params.gravity= Gravity.CENTER;
+        KidsArrivedNowRadioGroup.setLayoutParams(params1);
+        //
+        for (int i = 1; i <= childsArrivedNumber; i++) {
+            RadioButton rdbtn = new RadioButton(this);
+            rdbtn.setId(View.generateViewId());
+            rdbtn.setText(String.valueOf(i));
+            rdbtn.setPadding(10,0,30,0);
+            rdbtn.setTextAppearance(R.style.TextAppearance_AppCompat_Display1);
+            rdbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int selectedId = KidsArrivedNowRadioGroup.getCheckedRadioButtonId();
+
+                    // find the radio button by returned id
+                    RadioButton radioButton = findViewById(selectedId);
+                    newGuest.setKidsArrived(guest.getKidsArrived()+ Integer.parseInt((String)(radioButton.getText())));
+                }
+            });
+            KidsArrivedNowRadioGroup.addView(rdbtn);
+        }
+
     }
 
     // updates the Textfield in UI
@@ -145,44 +180,8 @@ public class GuestArrivalActivity extends AppCompatActivity{
         totalAdultGuestsArrivedTextView.setText(String.valueOf(guest.getAdultsArrived()));
         totalChildGuestsArrivedTextView.setText(String.valueOf(guest.getKidsArrived()));
 
-        String remainingAdultGuests[] = spinnerValueGenerator(guest.getTotalAdults()- guest.getAdultsArrived());
-        String remainingChildGuests[] = spinnerValueGenerator(guest.getTotalKids()- guest.getKidsArrived());
+        addRadioButtons(guest.getTotalAdults()- guest.getAdultsArrived(),guest.getTotalKids()-guest.getKidsArrived());
 
-
-        //Dropdown adapter for Adult Guest
-        ArrayAdapter adapterAdultGuest = new ArrayAdapter(this,android.R.layout.simple_spinner_item,remainingAdultGuests);
-        adapterAdultGuest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adultGuestsArrivedSpinner.setAdapter(adapterAdultGuest);
-        adultGuestsArrivedSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                //Toast.makeText(getApplicationContext(),"Adult "+i,Toast.LENGTH_SHORT).show();
-                newGuest.setAdultsArrived(guest.getAdultsArrived()+i);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                newGuest.setAdultsArrived(guest.getAdultsArrived());
-            }
-        });
-
-
-        //Dropdown adapter for Child Guest
-        ArrayAdapter adapterChildGuest = new ArrayAdapter(this,android.R.layout.simple_spinner_item,remainingChildGuests);
-        adapterChildGuest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        childGuestsArrivedSpinner.setAdapter(adapterChildGuest);
-        childGuestsArrivedSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                //Toast.makeText(getApplicationContext(),"Child "+i,Toast.LENGTH_SHORT).show();
-                newGuest.setKidsArrived(guest.getKidsArrived()+i);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                newGuest.setKidsArrived(guest.getKidsArrived());
-            }
-        });
 
     }
 
@@ -195,6 +194,14 @@ public class GuestArrivalActivity extends AppCompatActivity{
         newGuest.setTotalAdults(guest.getTotalAdults());
         newGuest.setTotalKids(guest.getTotalKids());
 
+        if(KidsArrivedNowRadioGroup.getCheckedRadioButtonId() == -1){
+            check++;
+            newGuest.setKidsArrived(guest.getKidsArrived());
+        }
+        if(adultsArrivedNowRadioGroup.getCheckedRadioButtonId() == -1){
+            check++;
+            newGuest.setAdultsArrived(guest.getAdultsArrived());
+        }
 
         sharedPref = getSharedPreferences("A", Context.MODE_PRIVATE);
         String url ="http://"+sharedPref.getString("IP",null)+":3000/transcend/"+newGuest.getUid();
@@ -227,8 +234,13 @@ public class GuestArrivalActivity extends AppCompatActivity{
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        updateView(guest);
-                        Toast.makeText(getApplicationContext(),"Guest Count Updated!",Toast.LENGTH_SHORT).show();
+                        if(check==2){
+                            Toast.makeText(getApplicationContext(),"Submit pressed w/o info",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Guest Count Updated!",Toast.LENGTH_SHORT).show();
+                        }
+                        startActivity(new Intent(GuestArrivalActivity.this , HomeActivity.class));
+
                     }
                 },
                 new Response.ErrorListener() {
